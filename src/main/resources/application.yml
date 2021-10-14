@@ -1,0 +1,79 @@
+server:
+  port: '9090'
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: qa
+---
+
+spring:
+  datasource:
+    username: springboot_tutorial
+    url: jdbc:postgresql://localhost:5432/springboot_tutorial_db
+    password: password
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: 'true'
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+  config:
+    activate:
+      on-profile: dev
+#welcome:
+#  message: Welcome to SpringBoot Tutorial!!
+
+---
+
+spring:
+  datasource:
+    username: springboot_tutorial_qa
+    url: jdbc:postgresql://localhost:5432/springboot_tutorial_db_qa
+    password: password
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: 'true'
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+  config:
+    activate:
+      on-profile: qa
+#welcome:
+#  message: Welcome to SpringBoot Tutorial!!
+
+# Enabling Endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude: "env, beans"
+
+---
+
+spring:
+  datasource:
+    username: springboot_tutorial_prod
+    url: jdbc:postgresql://localhost:5432/springboot_tutorial_db_prod
+    password: password
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: 'true'
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+  config:
+    activate:
+      on-profile: prod
+#welcome:
+#  message: Welcome to SpringBoot Tutorial!!
