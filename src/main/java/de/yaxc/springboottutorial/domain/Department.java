@@ -16,7 +16,15 @@ import javax.validation.constraints.NotBlank;
 @Builder
 public class Department {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(
+            name = "springboot_tutorial_qa",
+            sequenceName = "springboot_tutorial_qa",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            generator = "springboot_tutorial_qa",
+            strategy = GenerationType.SEQUENCE
+    )
     private Long departmentId;
 
     @NotBlank(message = "Please Add Department Name")

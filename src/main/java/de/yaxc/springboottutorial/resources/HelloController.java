@@ -6,15 +6,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/v1/gretings")
+@RequestMapping("api/v1/welcome")
 public class HelloController {
 
-   // @Value("${welcome.message}")
-    private String message;
+    @Value("${welcome.message}")
+    private String welcomeMessage;
 
 
     @GetMapping
-    public String sayHello() {
-        return message;
+    public String getWelcomeMessage() {
+        return welcomeMessage;
     }
 }

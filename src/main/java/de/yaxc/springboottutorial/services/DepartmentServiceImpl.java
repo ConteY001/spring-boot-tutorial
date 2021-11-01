@@ -11,9 +11,9 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
-public class DepartmentServiceImpl implements DepartementService {
+public class DepartmentServiceImpl implements DepartmentService {
 
-    private DepartmentRepository departmentRepository;
+    private final DepartmentRepository departmentRepository;
 
     @Autowired
     public DepartmentServiceImpl(DepartmentRepository departmentRepository) {
@@ -21,7 +21,7 @@ public class DepartmentServiceImpl implements DepartementService {
     }
 
     @Override
-    public Department saveDepartement(Department department) {
+    public Department saveDepartment(Department department) {
         return departmentRepository.save(department);
     }
 
@@ -33,10 +33,10 @@ public class DepartmentServiceImpl implements DepartementService {
     @Override
     public Department fetchDepartmentById(Long departmentId) throws ResourceNotFoundException {
         Optional<Department> optionalDepartment = departmentRepository.findById(departmentId);
-        if(!optionalDepartment.isPresent()) {
-            throw new ResourceNotFoundException(String.format("Department with [%s] is not available ", departmentId));
+        if(optionalDepartment.isPresent()) {
+            return optionalDepartment.get();
         }
-        return optionalDepartment.get();
+        throw new ResourceNotFoundException(String.format("Department with [%s] is not available ", departmentId));
     }
 
     @Override

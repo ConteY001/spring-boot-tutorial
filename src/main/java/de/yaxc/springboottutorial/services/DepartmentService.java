@@ -5,8 +5,8 @@ import de.yaxc.springboottutorial.exceptions.ResourceNotFoundException;
 
 import java.util.List;
 
-public interface DepartementService {
-    Department saveDepartement(Department department);
+public interface DepartmentService {
+    Department saveDepartment(Department department);
 
     List<Department> fetchAllDepartments() throws ResourceNotFoundException;
 

@@ -1,15 +1,20 @@
 server:
-  port: '9090'
+  port: 9000
+
+---
+
+spring:
+  application:
+    name: spring-boot-tutorial
+  profiles:
+    active: qa
 
 ---
 
 spring:
   config:
     activate:
-      on-profile: qa
----
-
-spring:
+      on-profile: dev
   datasource:
     username: springboot_tutorial
     url: jdbc:postgresql://localhost:5432/springboot_tutorial_db
@@ -22,15 +27,15 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: 'true'
-  config:
-    activate:
-      on-profile: dev
-#welcome:
-#  message: Welcome to SpringBoot Tutorial!!
+welcome:
+  message: Welcome to SpringBoot Tutorial!!
 
 ---
 
 spring:
+  config:
+    activate:
+      on-profile: qa
   datasource:
     username: springboot_tutorial_qa
     url: jdbc:postgresql://localhost:5432/springboot_tutorial_db_qa
@@ -43,13 +48,9 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: 'true'
-  config:
-    activate:
-      on-profile: qa
-#welcome:
-#  message: Welcome to SpringBoot Tutorial!!
+welcome:
+  message: Welcome to SpringBoot Tutorial!!
 
-# Enabling Endpoints
 management:
   endpoints:
     web:
@@ -60,6 +61,9 @@ management:
 ---
 
 spring:
+  config:
+    activate:
+      on-profile: prod
   datasource:
     username: springboot_tutorial_prod
     url: jdbc:postgresql://localhost:5432/springboot_tutorial_db_prod
@@ -72,8 +76,5 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: 'true'
-  config:
-    activate:
-      on-profile: prod
-#welcome:
-#  message: Welcome to SpringBoot Tutorial!!
+welcome:
+  message: Welcome to SpringBoot Tutorial!!
